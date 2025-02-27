@@ -39,7 +39,20 @@ pipeline {
                 }
             }
         }
-
+        stage('Deploy with PM2') {
+            steps {
+                // Deploy using PM2
+                sh '''
+                export pm2_home=/var/lib/jenkins/.pm2
+                if pm2 describe njanfang > /dev/null; then
+                  pm2 reload njanfang --update-env
+                else
+                  pm2 start npm --name "njanfang" -- start
+                fi
+                pm2 save
+                '''
+            }
+        }
         stage('Clean Up') {
             steps {
                 script {
