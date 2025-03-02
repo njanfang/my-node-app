@@ -13,6 +13,7 @@ pipeline {
                 // Clean the workspace and clone the GitHub repository
                 deleteDir()  // Clean up any previous workspace content
                 git url: "${GIT_REPO_URL}", branch: 'main'
+                sh 'git config --global --add safe.directory /var/lib/jenkins/workspace/my-node-app'
             }
         }
         
