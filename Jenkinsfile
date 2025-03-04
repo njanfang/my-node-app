@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         NODE_HOME = '/usr/local/bin'
-    }
+   }
 
     stages {
         stage('Clone Repository') {
