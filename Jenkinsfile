@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         NODE_HOME = '/usr/local/bin'
-   }
+    }
 
     stages {
         stage('Clone Repository') {
@@ -30,23 +30,14 @@ pipeline {
             }
         }
         */
-         stage('Move to /var/my-node-app') {
+
+        stage('Deploy') {
             steps {
                 script {
-                    // Move the repository from Jenkins workspace to /var/my-node-app
-                    sh 'mv $WORKSPACE/* /var/my-node-app/'
+                    sh 'pm2 start ecosystem.config.js'
                 }
             }
         }
-         stage('Deploy') {
-            steps {
-                script {
-                    // Deploy the application with PM2
-                    sh 'pm2 start /var/my-node-app/ecosystem.config.js'
-                }
-            }
-        }
-        
         
         stage('Clean Up') {
             steps {
