@@ -34,8 +34,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'cp -r * /var/lib/jenkins/workspace/my-node-app'
-                    sh 'cd /var/lib/jenkins/workspace/my-node-app'
+                    // Only copy files that don't already exist in the workspace
+                    sh 'cp -n Jenkinsfile ecosystem.config.js node_modules package-lock.json package.json server.js /var/lib/jenkins/workspace/my-node-app'
                     sh 'pm2 start ecosystem.config.js'
                 }
             }
