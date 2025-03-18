@@ -34,6 +34,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
+                    sh 'cp -r * /var/lib/jenkins/workspace/my-node-app'
+                    sh 'cd /var/lib/jenkins/workspace/my-node-app'
                     sh 'pm2 start ecosystem.config.js'
                 }
             }
