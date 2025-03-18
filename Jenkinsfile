@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     // Only copy files that don't already exist in the workspace
-                    sh 'cp -n Jenkinsfile ecosystem.config.js node_modules package-lock.json package.json server.js /var/lib/jenkins/workspace/my-node-app'
+                    sh 'cp -rn Jenkinsfile ecosystem.config.js node_modules package-lock.json package.json server.js /var/lib/jenkins/workspace/my-node-app'
                     sh 'pm2 start ecosystem.config.js'
                 }
             }
